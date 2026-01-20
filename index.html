@@ -175,7 +175,8 @@
                     case '事假': return 'bg-yellow-100 text-yellow-800 border-yellow-200';
                     case '病假': return 'bg-red-100 text-red-800 border-red-200';
                     case '補休': return 'bg-blue-100 text-blue-800 border-blue-200';
-                    default: return 'bg-gray-100 text-gray-800';
+                    case '公假': return 'bg-purple-100 text-purple-800 border-purple-200';
+                    default: return 'bg-gray-100 text-gray-800 border-gray-200';
                 }
             };
 
@@ -368,7 +369,7 @@
                         {/* 右側：顯示列表/月曆 */}
                         <div className="md:col-span-8 lg:col-span-9">
                             <div className="bg-white rounded-xl shadow-md p-6 min-h-[500px]">
-                                <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
+                                <div className="flex flex-col sm:flex-row justify-between items-center mb-4 gap-4">
                                     <h2 className="text-xl font-semibold flex items-center gap-2">
                                         <span>📋 休假總覽</span>
                                         <span className="text-sm font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">共 {leaves.length} 筆資料</span>
@@ -397,6 +398,16 @@
                                             月曆檢視
                                         </button>
                                     </div>
+                                </div>
+
+                                {/* 顏色圖例 (Legend) */}
+                                <div className="flex flex-wrap gap-2 mb-6 p-3 bg-gray-50 rounded-lg border border-gray-100 text-sm">
+                                    <span className="text-gray-500 font-medium mr-2 flex items-center">假別標示：</span>
+                                    {['特休', '事假', '病假', '補休', '公假'].map(type => (
+                                        <div key={type} className={`px-2 py-0.5 rounded border text-xs flex items-center ${getBadgeColor(type)}`}>
+                                            {type}
+                                        </div>
+                                    ))}
                                 </div>
 
                                 <div className="space-y-3">
